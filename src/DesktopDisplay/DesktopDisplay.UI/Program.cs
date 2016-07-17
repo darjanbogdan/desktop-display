@@ -1,4 +1,6 @@
-﻿using SimpleInjector;
+﻿using DesktopDisplay.Core.Contracts;
+using DesktopDisplay.Core.Services;
+using SimpleInjector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +36,8 @@ namespace DesktopDisplay.UI
             container = new Container();
 
             container.Register<Main>();
+
+            container.Register<IDesktopIconService, DesktopIconService>();
         }
 
         #endregion Methods

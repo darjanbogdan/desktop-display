@@ -49,12 +49,17 @@ namespace DesktopDisplay.Core.Services
                 for (int i = 0; i < itemCount; i++)
                 {
                     byte[] vBuffer = new byte[256];
-                    LVITEM[] vItem = new LVITEM[1];
-                    vItem[0].mask = LVIF_TEXT;
-                    vItem[0].iItem = i;
-                    vItem[0].iSubItem = 0;
-                    vItem[0].cchTextMax = vBuffer.Length;
-                    vItem[0].pszText = (IntPtr)((int)vPointer + Marshal.SizeOf(typeof(LVITEM)));
+                    LVITEM[] vItem = new LVITEM[1] 
+                    {
+                        new LVITEM()
+                        {
+                            mask = LVIF_TEXT,
+                            iItem = i,
+                            iSubItem = 0,
+                            cchTextMax = vBuffer.Length,
+                            pszText = (IntPtr)((int)vPointer + Marshal.SizeOf(typeof(LVITEM)))
+                        }
+                    };
                     uint vNumberOfBytesRead = 0;
 
                     WriteProcessMemory(vProcess, vPointer, Marshal.UnsafeAddrOfPinnedArrayElement(vItem, 0), Marshal.SizeOf(typeof(LVITEM)), ref vNumberOfBytesRead);
@@ -103,25 +108,25 @@ namespace DesktopDisplay.Core.Services
         #region External Methods
 
         [DllImport("kernel32.dll")]
-        public static extern IntPtr VirtualAllocEx(IntPtr hProcess, IntPtr lpAddress, uint dwSize, uint flAllocationType, uint flProtect);
+        private static extern IntPtr VirtualAllocEx(IntPtr hProcess, IntPtr lpAddress, uint dwSize, uint flAllocationType, uint flProtect);
         [DllImport("kernel32.dll")]
-        public static extern bool VirtualFreeEx(IntPtr hProcess, IntPtr lpAddress, uint dwSize, uint dwFreeType);
+        private static extern bool VirtualFreeEx(IntPtr hProcess, IntPtr lpAddress, uint dwSize, uint dwFreeType);
         [DllImport("kernel32.dll")]
-        public static extern bool CloseHandle(IntPtr handle);
+        private static extern bool CloseHandle(IntPtr handle);
         [DllImport("kernel32.dll")]
-        public static extern bool WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, IntPtr lpBuffer, int nSize, ref uint vNumberOfBytesRead);
+        private static extern bool WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, IntPtr lpBuffer, int nSize, ref uint vNumberOfBytesRead);
         [DllImport("kernel32.dll")]
-        public static extern bool ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, IntPtr lpBuffer, int nSize, ref uint vNumberOfBytesRead);
+        private static extern bool ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, IntPtr lpBuffer, int nSize, ref uint vNumberOfBytesRead);
         [DllImport("kernel32.dll")]
-        public static extern IntPtr OpenProcess(uint dwDesiredAccess, bool bInheritHandle, uint dwProcessId);
+        private static extern IntPtr OpenProcess(uint dwDesiredAccess, bool bInheritHandle, uint dwProcessId);
         [DllImport("user32.DLL")]
-        public static extern int SendMessage(IntPtr hWnd, uint Msg, int wParam, int lParam);
+        private static extern int SendMessage(IntPtr hWnd, uint Msg, int wParam, int lParam);
         [DllImport("user32.DLL")]
-        public static extern IntPtr FindWindow(string lpszClass, string lpszWindow);
+        private static extern IntPtr FindWindow(string lpszClass, string lpszWindow);
         [DllImport("user32.DLL")]
-        public static extern IntPtr FindWindowEx(IntPtr hwndParent, IntPtr hwndChildAfter, string lpszClass, string lpszWindow);
+        private static extern IntPtr FindWindowEx(IntPtr hwndParent, IntPtr hwndChildAfter, string lpszClass, string lpszWindow);
         [DllImport("user32.dll")]
-        public static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint dwProcessId);
+        private static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint dwProcessId);
 
         #endregion External Methods
 

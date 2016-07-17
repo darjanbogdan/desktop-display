@@ -11,7 +11,7 @@ namespace DesktopDisplay.Models
         public DesktopIcon(int positionX, int positionY, string name)
         {
             PositionX = positionX;
-            PositionY = PositionY;
+            PositionY = positionY;
             Name = name;
         }
 

@@ -104,6 +104,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DesktopDisplay.Core\DesktopDisplay.Core.csproj">
+      <Project>{c2022057-69a0-4249-9185-1ae85053fd80}</Project>
+      <Name>DesktopDisplay.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DesktopDisplay.Models\DesktopDisplay.Models.csproj">
+      <Project>{a8837c4f-8808-4898-9ad5-8406fc1c3432}</Project>
+      <Name>DesktopDisplay.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
