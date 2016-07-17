@@ -38,6 +38,8 @@ namespace DesktopDisplay.UI
             container.Register<Main>();
 
             container.Register<IDesktopIconService, DesktopIconService>();
+            container.Register<IDesktopInfoService, DesktopInfoService>();
+            container.Register<IGridService, GridService>();
         }
 
         #endregion Methods

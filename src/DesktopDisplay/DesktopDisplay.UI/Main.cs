@@ -16,12 +16,14 @@ namespace DesktopDisplay.UI
     public partial class Main : Form
     {
         private IDesktopIconService desktopIconService;
+        private IGridService gridService;
 
-        public Main(IDesktopIconService desktopIconService)
+        public Main(IDesktopIconService desktopIconService, IGridService gridService)
         {
             InitializeComponent();
 
             this.desktopIconService = desktopIconService;
+            this.gridService = gridService;
         }
 
         private void Main_Load(object sender, EventArgs a)
@@ -29,6 +31,8 @@ namespace DesktopDisplay.UI
             this.listView1.Columns.Add("Icon Name");
             this.listView1.Columns.Add("Icon Location");
             this.listView1.View = View.Details;
+
+            var test = this.gridService.GetPrimaryGridConfiguration();
         }
 
       
