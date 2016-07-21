@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace DesktopDisplay.Core.Services
 {
@@ -14,28 +15,18 @@ namespace DesktopDisplay.Core.Services
 
         private const int DefaultIconPositionDeltaY = 94;
 
-        private IDesktopInfoService desktopInfoService;
+        private IDesktopService desktopService;
 
-        private IDesktopIconService desktopIconService;
-
-        public GridService(IDesktopInfoService desktopInfoService, IDesktopIconService desktopIconService)
+        public GridService(IDesktopService desktopService)
         {
-            this.desktopInfoService = desktopInfoService;
-            this.desktopIconService = desktopIconService;
+            this.desktopService = desktopService;
         }
 
         public GridConfiguration GetPrimaryGridConfiguration()
         {
-            var display = this.desktopInfoService.GetDesktop();
-            var desktopIcons = this.desktopIconService.GetDesktopIcons();
-
-            var positionDeltaX = GetIconPositionDeltaX(desktopIcons);
-            var positionDeltaY = GetIconPositionDeltaY(desktopIcons);
-
-            var maxGridColumns = GetGridElementsCount(display.Primary.Resolution.Width, positionDeltaX);
-            var maxGridRows = GetGridElementsCount(display.Primary.Resolution.Height, positionDeltaY);
-
-            return new GridConfiguration(maxGridColumns, maxGridRows);
+            var display = this.desktopService.GetDesktop();
+            
+            return new GridConfiguration(0, 0);
         }
 
         private int GetIconPositionDelta(IEnumerable<DesktopIcon> icons, Func<DesktopIcon, int> positionGetter, int defaultPositionDelta)

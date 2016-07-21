@@ -39,6 +39,7 @@ namespace DesktopDisplay.UI
 
             container.Register<IDesktopIconService, DesktopIconService>();
             container.Register<IDesktopInfoService, DesktopInfoService>();
+            container.Register<IDesktopService, DesktopService>();
             container.Register<IGridService, GridService>();
         }
 

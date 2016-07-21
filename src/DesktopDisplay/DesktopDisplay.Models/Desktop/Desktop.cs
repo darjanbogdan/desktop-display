@@ -8,8 +8,8 @@ namespace DesktopDisplay.Models
 {
     public class Desktop
     {
-        public Display Primary { get; set; }
+        public DesktopScreen PrimaryScreen { get; set; }
 
-        public List<Display> Secondary { get; set; }
+        public List<DesktopScreen> SecondaryScreens { get; set; }
     }
 }

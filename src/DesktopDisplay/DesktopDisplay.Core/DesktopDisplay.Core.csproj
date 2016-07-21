@@ -63,10 +63,12 @@
     <Compile Include="Contracts\IDesktopInfoService.cs" />
     <Compile Include="Contracts\IGridService.cs" />
     <Compile Include="Services\DesktopIconService.cs" />
+    <Compile Include="Services\DesktopService.cs" />
     <Compile Include="Services\GridService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DesktopInfoService.cs" />
     <Compile Include="Contracts\IDesktopIconService.cs" />
+    <Compile Include="Contracts\IDesktopService.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
